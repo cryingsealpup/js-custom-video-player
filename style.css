@@ -6,6 +6,11 @@
   transition: all 0.3s linear;
   background: rgba(0, 0, 0, 0.3215686275);
 }
+.controls-actions {
+  display: flex;
+  margin: 0.5rem 1rem 1rem;
+  align-items: center;
+}
 .controls.hidden {
   opacity: 0;
 }
@@ -15,7 +20,6 @@
 .controls__progress {
   height: 1rem;
   position: relative;
-  margin: 0 0 3rem;
 }
 
 .progress {
@@ -26,14 +30,14 @@
 }
 .progress-seek {
   width: 100%;
-  /* padding: 1rem 0; */
+  cursor: pointer;
 }
 .progress-seek:hover + .progress-tooltip {
-  opacity: 0;
+  opacity: 100%;
   transition: all 0.25s linear;
 }
 .progress-tooltip {
-  opacity: 100%;
+  opacity: 0;
   transition: all 0.25s linear;
   position: absolute;
   top: -3rem;
@@ -48,16 +52,16 @@ button {
 .button__play-state {
   box-sizing: border-box;
   width: 0;
-  height: 2rem;
+  height: 1rem;
   border-color: transparent transparent transparent white;
   border-style: solid;
-  border-width: 1rem 0 1rem 1.8rem;
+  border-width: 0.5rem 0 0.5rem 0.9rem;
   transition: all 0.5s linear;
   cursor: pointer;
 }
 .button__play-state.paused {
   border-style: double;
-  border-width: 0 0 0 1.8rem;
+  border-width: 0 0 0 0.9rem;
 }
 .button__play-state:hover {
   border-color: transparent transparent transparent mistyrose;
@@ -67,6 +71,8 @@ button {
   padding: 0.5rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  width: 1.2rem;
+  height: 1.2rem;
 }
 .button__sound-state svg:hover {
   color: mistyrose;
@@ -99,6 +105,7 @@ body {
   font-family: "Libre Franklin", sans-serif;
   font-weight: 500;
   color: white;
+  font-size: 0.75rem;
 }
 
 body, video {

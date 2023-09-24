@@ -5,6 +5,10 @@
     opacity: 0
     transition: all 0.3s linear
     background: #00000052
+    &-actions 
+        display: flex
+        margin: 0.5rem 1rem 1rem
+        align-items: center
     &.hidden
         opacity: 0
     &:hover
@@ -12,23 +16,21 @@
     &__progress
         height: 1rem
         position: relative
-        margin: 0 0 3rem
 
 .progress
     border-radius: 0.4rem
     width: 100%
     height: inherit
     pointer-events: none
-
     &-seek 
         width: 100%
         cursor: pointer
-        
+
         &:hover + .progress-tooltip
-            opacity: 0
+            opacity: 100%
             transition: all 0.25s linear
     &-tooltip 
-        opacity: 100%
+        opacity: 0
         transition: all 0.25s linear
         position: absolute
         top: -3rem
@@ -41,15 +43,15 @@ button
     &__play-state
         box-sizing: border-box
         width: 0
-        height: 2rem
+        height: 1rem
         border-color: transparent transparent transparent white
         border-style: solid
-        border-width: 1rem 0 1rem 1.8rem
+        border-width: 0.5rem 0 0.5rem 0.9rem
         transition: all 0.5s linear
         cursor: pointer
         &.paused
             border-style: double
-            border-width: 0 0 0 1.8rem
+            border-width: 0 0 0 0.9rem
         &:hover 
             border-color: transparent transparent transparent mistyrose
     &__sound-state
@@ -58,6 +60,8 @@ button
             padding: 0.5rem
             cursor: pointer
             transition: all 0.3s ease
+            width: 1.2rem
+            height: 1.2rem
             &:hover
                 color: mistyrose
                 transition: all 0.3s ease
