@@ -1,0 +1,17 @@
+.playback
+    position: absolute
+    width: 100%
+    top: 30%
+    display: flex
+    justify-content: center
+    align-items: center
+    z-index: 1
+    opacity: 0
+    transform: zoom(1)
+    transition: all 0.2s ease-in-out
+    button
+        height: 8rem
+        border-width: 4rem 0 4rem 8rem
+    &.show
+        opacity: 1
+        transform: zoom(1.1)

@@ -1,19 +1,52 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Hide default controls
-    const video = document.querySelector('.video');
-    const videoControls = document.querySelector('.controls');
+    const playback = document.querySelector('.playback'), 
+          video = document.querySelector('.video'), 
+          videoControls = document.querySelector('.controls')
 
+    video.addEventListener('click', () => {
+        playback.classList.toggle('show')
+    })
+    videoControls.addEventListener('click', () => {
+        playback.classList.toggle('show')
+    })
+
+
+
+    // Hide default controls
     if (!!document.createElement('video').canPlayType) {
-        video.controls = false;
-        videoControls.classList.remove('hidden');
+        video.controls = false
+        videoControls.classList.remove('hidden')
     }
 
     // Toggle play / pause button visible state and play / pause video on click
     const play = document.querySelector('.button__play-state')
     play.addEventListener('click', function () {
         this.classList.toggle('paused')
-        if (video.paused || VideoPlaybackQuality.ended)  video.play()
-        else video.pause()
+        playback.firstChild.classList.toggle('paused')
+        
+        if (video.paused || VideoPlaybackQuality.ended)  {
+            video.play()
+            playback.classList.add('show')
+        }
+        else {
+            video.pause()
+            playback.classList.remove('show')   
+        }
+    })
+    
+    // Start / stop when playback clicked
+    playback.addEventListener('click', () => {
+        console.log('dfjklf')
+        playback.firstChild.classList.toggle('paused')
+        playback.classList.toggle('show')
+        if (video.paused || VideoPlaybackQuality.ended)  {
+            video.play()
+            play.classList.add('paused')
+        }
+        else {
+            video.pause()
+            play.classList.remove('paused')   
+        }
     })
 
     // Change time left behind and total duration markup
