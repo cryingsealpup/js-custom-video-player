@@ -1,0 +1,65 @@
+.controls
+    position: absolute
+    bottom: 0
+    width: 100%
+    opacity: 0
+    transition: all 0.3s linear
+    background: #00000052
+    &.hidden
+        opacity: 0
+    &:hover
+        opacity: 100%
+    &__progress
+        height: 1rem
+        position: relative
+        margin: 0 0 3rem
+
+.progress
+    border-radius: 0.4rem
+    width: 100%
+    height: inherit
+    pointer-events: none
+
+    &-seek 
+        width: 100%
+        cursor: pointer
+        
+        &:hover + .progress-tooltip
+            opacity: 0
+            transition: all 0.25s linear
+    &-tooltip 
+        opacity: 100%
+        transition: all 0.25s linear
+        position: absolute
+        top: -3rem
+        content: attr(data-title)
+
+button
+    border: 0
+    background: transparent 
+.button
+    &__play-state
+        box-sizing: border-box
+        width: 0
+        height: 2rem
+        border-color: transparent transparent transparent white
+        border-style: solid
+        border-width: 1rem 0 1rem 1.8rem
+        transition: all 0.5s linear
+        cursor: pointer
+        &.paused
+            border-style: double
+            border-width: 0 0 0 1.8rem
+        &:hover 
+            border-color: transparent transparent transparent mistyrose
+    &__sound-state
+        svg 
+            color: white
+            padding: 0.5rem
+            cursor: pointer
+            transition: all 0.3s ease
+            &:hover
+                color: mistyrose
+                transition: all 0.3s ease
+        .hidden
+            display: none

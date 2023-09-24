@@ -1,0 +1,12 @@
+doctype html
+html(lang='en')
+    include includes/_head
+    body 
+        header.header
+        main 
+            .container
+                .video-container 
+                    video.video(controls, preload='meta')
+                        source(src='video.mp4', type='video/mp4')
+                    include includes/_controls
+        footer.footer
