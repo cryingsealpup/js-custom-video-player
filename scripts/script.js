@@ -140,7 +140,6 @@ document.addEventListener('DOMContentLoaded', () => {
             key
         } = e
         // console.log(key)
-        console.log(key)
         switch (key.toLowerCase()) {
             case ' ':
                 if (video.paused || VideoPlaybackQuality.ended) {
@@ -176,7 +175,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             } 
             else {
+                console.log(document.querySelector('.video').paused)
+                if (!video.paused && document.querySelector('.playback').classList.contains('show')) {
+                    console.log('jfdkl')
+                    document.querySelector('.playback').classList.remove('show')
+                }
                 await document.exitPictureInPicture()
+
             }
         } 
         catch (error) {

@@ -99,6 +99,9 @@ button {
 .button__play:hover {
   border-color: transparent transparent transparent mistyrose;
 }
+.button__pip {
+  cursor: pointer;
+}
 .button__pip svg {
   width: 1.2rem;
   height: 1.2rem;
