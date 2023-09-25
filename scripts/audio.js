@@ -65,10 +65,12 @@ document.addEventListener('DOMContentLoaded', () => {
         playback.classList.toggle('paused')
         if (song.paused || song.ended) {
             song.play()
+            updateProgress(song)
             play.children[0].classList.add('hidden')
             play.children[1].classList.remove('hidden')
         } else {
             song.pause()
+            updateProgress(song)
             play.children[0].classList.remove('hidden')
             play.children[1].classList.add('hidden')
         }
@@ -115,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function playCurrentSong() {
         const currentSong = document.querySelector('.playlist__item.current').querySelector('audio')
         updateProgress(currentSong)
-        listenVolume(currentSong)
+   //     listenVolume(currentSong)
         if (currentSong.paused || currentSong.ended) {
             currentSong.play()
             play.children[0].classList.add('hidden')
@@ -155,6 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!current.querySelector('audio').paused || !current.querySelector('audio').ended) {
             current.querySelector('audio').pause()
         }
+        listenVolume(newCurrent.querySelector('audio'))
         current.classList.remove('current')
         seek.value = 0
         current.querySelector('audio').currentTime = 0
@@ -173,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
         current.classList.remove('current')
         newCurrentSlide.classList.add('selected')
         currentSlide.classList.remove('selected')
-
+        listenVolume(newCurrent.querySelector('audio'))
         current.querySelector('audio').pause()
         seek.value = 0
         current.querySelector('audio').currentTime = 0
@@ -183,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
 
-
+    listenVolume(document.querySelector('.current').querySelector('audio'))
 
     function listenVolume(song) {
         const volumeBtn = document.querySelector('.button__sound-state'),
