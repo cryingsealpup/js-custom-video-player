@@ -63,6 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update progress bar indicator
     video.addEventListener('timeupdate', () => {
         seek.value = Math.floor(video.currentTime)
+        const percentage = seek.value / seek.getAttribute('max') * 100
+        seek.style.background = `linear-gradient(to right, mistyrose 0%, mistyrose ${percentage}%, #fff ${percentage}%, white 100%)`
     })
 
     
@@ -82,6 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const skipTo = e.target.dataset.seek ? e.target.dataset.seek : e.target.value
         video.currentTime = skipTo
         seek.value = skipTo
+        const percentage = skipTo / seek.getAttribute('max') * 100
+        seek.style.background = `linear-gradient(to right, mistyrose 0%, mistyrose ${percentage}%, #fff ${percentage}%, white 100%)`
     })
 
     const volumeBtn = document.querySelector('.button__sound-state'), 
