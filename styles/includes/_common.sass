@@ -50,8 +50,14 @@ a
     color: slategray
     font-weight: 800
     align-items: center
-    img, object
+    img
         height: 1.5rem
         max-width: 6rem
         object-fit: cover
         filter: contrast(0.1)
+        transition: all 0.3s ease
+        &:hover
+            filter: contrast(0.5)
+            transition: all 0.3s ease
+    a:hover 
+        color: darkslategray

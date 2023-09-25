@@ -186,11 +186,19 @@ a {
   font-weight: 800;
   align-items: center;
 }
-.footer-copyright img, .footer-copyright object {
+.footer-copyright img {
   height: 1.5rem;
   max-width: 6rem;
   object-fit: cover;
   filter: contrast(0.1);
+  transition: all 0.3s ease;
+}
+.footer-copyright img:hover {
+  filter: contrast(0.5);
+  transition: all 0.3s ease;
+}
+.footer-copyright a:hover {
+  color: darkslategray;
 }
 
 .playback {
