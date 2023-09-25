@@ -3,12 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
           video = document.querySelector('.video'), 
           videoControls = document.querySelector('.controls')
 
-    video.addEventListener('click', () => {
-        playback.classList.toggle('show')
-    })
-    videoControls.addEventListener('click', () => {
-        playback.classList.toggle('show')
-    })
+    // videoControls.addEventListener('click', () => {
+    //     playback.classList.toggle('show')
+    // })
 
 
 
@@ -22,23 +19,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const play = document.querySelector('.button__play-state')
     play.addEventListener('click', function () {
         this.classList.toggle('paused')
-        playback.firstChild.classList.toggle('paused')
-        
         if (video.paused || VideoPlaybackQuality.ended)  {
             video.play()
-            playback.classList.add('show')
+            playback.classList.remove('show') 
+            playback.classList.add('paused')   
         }
         else {
             video.pause()
-            playback.classList.remove('show')   
+            playback.classList.add('show')
+            playback.classList.remove('paused')   
+              
         }
     })
     
     // Start / stop when playback clicked
     playback.addEventListener('click', () => {
-        console.log('dfjklf')
-        playback.firstChild.classList.toggle('paused')
-        playback.classList.toggle('show')
+        playback.classList.toggle('show')     
+        playback.classList.toggle('paused')        
         if (video.paused || VideoPlaybackQuality.ended)  {
             video.play()
             play.classList.add('paused')

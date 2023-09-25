@@ -57,7 +57,7 @@ button {
   border-color: transparent transparent transparent white;
   border-style: solid;
   border-width: 0.5rem 0 0.5rem 0.9rem;
-  transition: all 0.5s linear;
+  transition: all 0.1s linear;
   cursor: pointer;
 }
 .button__play.paused {
