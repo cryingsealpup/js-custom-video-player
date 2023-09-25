@@ -17,6 +17,8 @@
     &__progress
         height: 1rem
         position: relative
+    &-extra 
+        margin-left: auto
 
 .progress
     border-radius: 0.4rem
@@ -59,7 +61,7 @@
         opacity: 0
         transition: all 0.25s linear
         position: absolute
-        top: -3rem
+        top: -1.2rem
         content: attr(data-title)
 
 button
@@ -80,6 +82,15 @@ button
             border-width: 0 0 0 0.9rem
         &:hover 
             border-color: transparent transparent transparent mistyrose
+    &__pip
+        svg
+            width: 1.2rem
+            height: 1.2rem
+            color: white
+            &:hover
+                color: mistyrose
+            &.hidden
+                display: none
     &__sound-state
         svg 
             color: white

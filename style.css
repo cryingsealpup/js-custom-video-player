@@ -22,6 +22,9 @@
   height: 1rem;
   position: relative;
 }
+.controls-extra {
+  margin-left: auto;
+}
 
 .progress {
   border-radius: 0.4rem;
@@ -70,7 +73,7 @@
   opacity: 0;
   transition: all 0.25s linear;
   position: absolute;
-  top: -3rem;
+  top: -1.2rem;
   content: attr(data-title);
 }
 
@@ -95,6 +98,17 @@ button {
 }
 .button__play:hover {
   border-color: transparent transparent transparent mistyrose;
+}
+.button__pip svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  color: white;
+}
+.button__pip svg:hover {
+  color: mistyrose;
+}
+.button__pip svg.hidden {
+  display: none;
 }
 .button__sound-state svg {
   color: white;
