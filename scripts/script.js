@@ -130,8 +130,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keyup', (e) => {
         const { key } = e
        // console.log(key)
+       console.log(key)
         switch(key.toLowerCase()) {
-          case 'p':
+          case ' ':
             if (video.paused || VideoPlaybackQuality.ended)  {
                 video.play()
                 playback.classList.remove('show') 
