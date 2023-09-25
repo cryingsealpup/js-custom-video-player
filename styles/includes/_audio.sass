@@ -1,0 +1,70 @@
+.audio
+    &-container 
+        .playback
+            top: 18%
+            .button__play
+                border-color: transparent transparent transparent mistyrose
+                &:hover
+                    border-color: transparent transparent transparent lightslategray
+    &-slider 
+        background: mistyrose
+        width: 20rem
+        border-radius: 0.7rem
+        padding: 0 0 1rem
+        color: darkslategray
+        font-weight: 300
+        input
+            border: solid 2px lightslategray
+            width: 70%
+    &-volume 
+        margin-left: auto
+        input
+            opacity: 0
+            position: absolute
+            right: -1.5rem
+            z-index: 2
+            transform: rotate(270deg)
+            width: 4rem
+
+        &:hover input 
+            opacity: 100
+        svg 
+            color: dimgrey
+            margin-top: 0.3rem
+            padding: 0
+            &:hover
+                color: slategray
+    &-slides
+        display: flex
+        img 
+            width: 0
+            height: 20rem
+            object-fit: cover
+            transition: all 0.1s ease
+            &.selected
+                width: 20rem
+                transition: all 0.1s ease
+    &-controls
+        display: flex
+        justify-content: space-between
+        margin: 1rem
+        align-items: center
+        .controls__extra
+            display: flex
+            align-items: center
+            margin-right: -.5rem
+    &-info 
+        display: flex
+        flex-direction: column
+        align-items: center
+        width: 8rem
+    &-progress 
+        display: flex
+        margin: 0 0.5rem
+        display: flex
+        align-items: center
+        gap: 0.5rem
+        justify-content: space-around
+        &__time
+            font-size: 0.55rem
+            font-weight: 900

@@ -102,6 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
     volumeBar.addEventListener('input', () => {
         if (video.muted) video.muted = false
         video.volume = volumeBar.value
+        const percentage = volumeBar.value / volumeBar.getAttribute('max') * 100
+        volumeBar.style.background = `linear-gradient(to right, mistyrose 0%, mistyrose ${percentage}%, #fff ${percentage}%, white 100%)`
     })
 
     function changeMuteIcon() {
@@ -115,6 +117,8 @@ document.addEventListener('DOMContentLoaded', () => {
             volumeBtn.setAttribute('data-title', 'Unmute (m)')
         } else if (video.volume > 0 && video.volume < 0.51) volumeLow.classList.remove('hidden')
         else volumeHigh.classList.remove('hidden')
+        const percentage = volumeBar.value / volumeBar.getAttribute('max') * 100
+        volumeBar.style.background = `linear-gradient(to right, mistyrose 0%, mistyrose ${percentage}%, #fff ${percentage}%, white 100%)`
     }
 
     // Change icon based on volume level / state (mute / unmuted)
@@ -128,6 +132,8 @@ document.addEventListener('DOMContentLoaded', () => {
             volumeBar.setAttribute('data-volume', volumeBar.value)
             volumeBar.value = 0
         } else volumeBar.value = volumeBar.dataset.volume
+        const percentage = volumeBar.value / volumeBar.getAttribute('max') * 100
+        volumeBar.style.background = `linear-gradient(to right, mistyrose 0%, mistyrose ${percentage}%, #fff ${percentage}%, white 100%)`
     }
 
     // Mute when button clicked
@@ -202,3 +208,5 @@ function formatTime(timeInSeconds) {
         seconds: result[2],
     }
 }
+
+

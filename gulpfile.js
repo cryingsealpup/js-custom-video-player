@@ -8,13 +8,17 @@ function buildStyles() {
         .pipe(dest('./'));
     };
     
+// function buildTemplates() {  // create a task called build (we can run it using 'gulp build' in terminal)
+//     return src('./templates/*.pug') // set gulp searching for pug templates with anything ending with .pug
+//         .pipe(pug()) // run files throgh gulp-pug
+//         .pipe(dest('./')) // place html in dist
+//     }
+
 function buildTemplates() {  // create a task called build (we can run it using 'gulp build' in terminal)
     return src('./templates/*.pug') // set gulp searching for pug templates with anything ending with .pug
         .pipe(pug()) // run files throgh gulp-pug
-        .pipe(dest('./')) // place html in dist
+        .pipe(dest('./audio')) // place html in dist
     }
-
-
 function watchFiles(cb) {
     watch('./templates/*.pug', buildTemplates);
     watch('./styles/*.sass', buildStyles);

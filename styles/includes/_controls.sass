@@ -26,36 +26,11 @@
     height: inherit
     pointer-events: none
     &-seek 
-        width: 100%
-        cursor: pointer
-        -webkit-appearance: none
+        width: calc(100% - 4px)
         background: linear-gradient(to right, mistyrose 0%, mistyrose 0%, #fff 0%, #fff 100%)
-        height: 0.5rem
-        border: solid 2px mistyrose
         &:hover + .progress-tooltip
             opacity: 100%
             transition: all 0.25s linear
-        &[type="range"] 
-            transition: all 0.2s linear
-            &::-webkit-slider-thumb 
-                -webkit-appearance: none
-                appearance: none
-                outline: 1px solid lightslategray
-                width: 1rem
-                height: 1rem
-                border-radius: 0.2rem
-                background-color: lightslategray
-                transition: all 0.2s linear
-            &:focus 
-                border: solid 2px transparent
-                transition: all 0.2s linear
-            &::-moz-range-thumb 
-                -webkit-appearance: none
-                appearance: none
-                width: 1rem
-                height: 1rem
-                border-radius: 0.2rem
-                background-color: lightslategray
 
     &-tooltip 
         opacity: 0
@@ -68,6 +43,22 @@ button
     border: 0
     background: transparent 
 .button
+    &__audio
+        &-play, &-next, &-prev
+            height: 1.5rem
+            img
+                height: inherit
+                filter: contrast(0.25)
+                transition: all 0.2s ease
+                &:hover
+                    filter: contrast(0.1)
+                    transition: all 0.2s ease
+        &-play 
+            margin-left: auto
+            img
+                display: block
+                &.hidden
+                    display: none
     &__play
         box-sizing: border-box
         width: 0
@@ -77,6 +68,7 @@ button
         border-width: 0.5rem 0 0.5rem 0.9rem
         transition: all 0.1s linear
         cursor: pointer
+
         &.paused
             border-style: double
             border-width: 0 0 0 0.9rem
@@ -93,6 +85,9 @@ button
             &.hidden
                 display: none
     &__sound-state
+        // width: 8rem
+        // display: flex
+        // justify-content: flex-start
         svg 
             color: white
             padding: 0.5rem
@@ -105,3 +100,19 @@ button
                 transition: all 0.3s ease
         .hidden
             display: none
+        // &:hover + .volume-slider
+        //     opacity: 100
+
+.volume-slider
+    // opacity: 0
+    height: 0.3rem
+    &[type="range"]
+        &::-webkit-slider-thumb
+            -webkit-appearance: none
+            appearance: none
+            outline: 0px solid lightslategray
+            width: 0.4rem
+            height: 0.4rem
+            border-radius: 0.2rem
+            background-color: lightslategray
+            transition: all 0.2s linear

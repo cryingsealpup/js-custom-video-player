@@ -1,0 +1,20 @@
+doctype html
+html(lang='en')
+    include audio_includes/_head
+    body 
+        header.header
+        main 
+            .container
+                .video-container.audio-container
+                    include includes/_playback
+                    include audio_includes/_slider
+                    include audio_includes/_playlist
+                .footer-copyright 
+                        p 2023
+                        p 
+                            a(href='https://rs.school/js-stage0/') 
+                                img(src='../files/rs_school_js.svg', alt='RS School logo')
+                        p 
+                            a(href='https://github.com/cryingsealpup') 
+                                img(src='../files/GitHub_Logo.png', alt='GitHub logo')
+
