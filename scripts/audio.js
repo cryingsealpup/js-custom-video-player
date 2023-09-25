@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
         timeDuration = document.querySelector('.time-duration'),
         seek = document.querySelector('.progress-seek'),
         next = document.querySelector('.button__audio-next'),
-        prev = document.querySelector('.button__audio-prev')
+        prev = document.querySelector('.button__audio-prev'),
+        playback = document.querySelector('.playback')
 
 
     // Set audios duration
@@ -42,6 +43,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     getCurrentInfo(document.querySelector('.current'))
     setDuration(document.querySelector('.current').querySelector('audio'))
+
+    // Start / stop when playback clicked
+    playback.addEventListener('click', () => {
+        const song = document.querySelector('.current').querySelector('audio')
+        if (!song.paused) {
+            playback.classList.add('show')
+        }
+        else {
+            playback.classList.remove('show')
+        }
+        playback.classList.toggle('paused')
+        if (song.paused || song.ended) {
+            song.play()
+            play.children[0].classList.add('hidden')
+            play.children[1].classList.remove('hidden')
+        } else {
+            song.pause()
+            play.children[0].classList.remove('hidden')
+            play.children[1].classList.add('hidden')
+        }
+    })
 
     function updateProgress(song) {
 
@@ -89,10 +111,12 @@ document.addEventListener('DOMContentLoaded', () => {
             currentSong.play()
             play.children[0].classList.add('hidden')
             play.children[1].classList.remove('hidden')
+            playback.classList.remove('show')
             // playback.classList.remove('show')
             // playback.classList.add('paused')
         } else {
             currentSong.pause()
+            playback.classList.add('show')
             play.children[0].classList.remove('hidden')
             play.children[1].classList.add('hidden')
             // playback.classList.add('show')
@@ -198,6 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Mute when button clicked
         volumeBtn.addEventListener('click', () => {
+            console.log('clicked')
             turnMute()
         })
     }

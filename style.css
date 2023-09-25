@@ -307,8 +307,8 @@ input[type=range]::-moz-range-thumb {
 .audio-volume input {
   opacity: 0;
   position: absolute;
-  right: -1.5rem;
-  z-index: 2;
+  right: -1.8rem;
+  z-index: 1;
   transform: rotate(270deg);
   width: 4rem;
 }
