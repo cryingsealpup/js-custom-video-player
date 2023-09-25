@@ -11,3 +11,5 @@ https://freshman.tech/custom-html5-video/
 https://www.smashingmagazine.com/2021/12/create-custom-range-input-consistent-browsers/
 
 https://medium.com/@miguelznunez/how-to-extract-metadata-from-music-files-with-javascript-using-jsmediatags-619323bb2b16
+
+https://codepen.io/yochans/pen/xBeRaj

@@ -307,8 +307,8 @@ input[type=range]::-moz-range-thumb {
 .audio-volume input {
   opacity: 0;
   position: absolute;
-  right: -1.8rem;
-  z-index: 1;
+  right: -1.5rem;
+  z-index: 2;
   transform: rotate(270deg);
   width: 4rem;
 }
@@ -331,6 +331,7 @@ input[type=range]::-moz-range-thumb {
   height: 20rem;
   object-fit: cover;
   transition: all 0.1s ease;
+  filter: saturate(0.74);
 }
 .audio-slides img.selected {
   width: 20rem;
@@ -387,6 +388,10 @@ input[type=range]::-moz-range-thumb {
   background: slategray;
   transition: all 0.2s ease;
 }
+.playlist__item.current img {
+  animation: animName 5s linear infinite;
+  filter: saturate(0.6);
+}
 .playlist__item-info p {
   margin: 0.2rem 0;
 }
@@ -405,4 +410,13 @@ input[type=range]::-moz-range-thumb {
 }
 .item-duration, .item-artist {
   font-weight: 100;
+}
+
+@keyframes animName {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

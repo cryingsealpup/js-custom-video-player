@@ -33,6 +33,15 @@ document.addEventListener('DOMContentLoaded', () => {
             seek.setAttribute('max', duration)
         })
     }
+
+    function setDuration2(song) {
+        const sibling = song.previousElementSibling, 
+              time = sibling.querySelector('.item-duration').innerText,
+              duration = sibling.querySelector('.item-duration').getAttribute('raw-duration')
+
+            timeDuration.innerHTML = time
+            seek.setAttribute('max', duration)
+    }
     // Add info about current song in player view
     function getCurrentInfo(current) {
 
@@ -69,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Set song duration
         setDuration(song)
-
+        setDuration2(song)
         // Allow using range bar
         skipProgress(song)
 
