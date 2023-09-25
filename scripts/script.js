@@ -3,12 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
           video = document.querySelector('.video'), 
           videoControls = document.querySelector('.controls')
 
-    // videoControls.addEventListener('click', () => {
-    //     playback.classList.toggle('show')
-    // })
-
-
-
     // Hide default controls
     if (!!document.createElement('video').canPlayType) {
         video.controls = false
@@ -102,9 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
         video.volume = volumeBar.value
     })
 
-
-    // Change icon based on volume level / state (mute / unmuted)
-    video.addEventListener('volumechange', () => {
+    function changeMuteIcon() {
         [...volumeBtn.childNodes].forEach((btn) => {btn.classList.add('hidden')})
         volumeBtn.setAttribute('data-title', 'Mute (m)')
 
@@ -114,17 +106,51 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         else if (video.volume > 0 && video.volume < 0.51) volumeLow.classList.remove('hidden')
         else volumeHigh.classList.remove('hidden')
+    }
+
+    // Change icon based on volume level / state (mute / unmuted)
+    video.addEventListener('volumechange', () => {
+        changeMuteIcon()
     })
 
-    // Mute when button clicked
-    volumeBtn.addEventListener('click', () => {
+    function turnMute() {
         video.muted = !video.muted
         if (video.muted) {
             volumeBar.setAttribute('data-volume', volumeBar.value)
             volumeBar.value = 0
         }
         else volumeBar.value = volumeBar.dataset.volume
+    }
+
+    // Mute when button clicked
+    volumeBtn.addEventListener('click', () => {
+        turnMute()
     })
+
+    document.addEventListener('keyup', (e) => {
+        const { key } = e
+       // console.log(key)
+        switch(key.toLowerCase()) {
+          case 'p':
+            if (video.paused || VideoPlaybackQuality.ended)  {
+                video.play()
+                playback.classList.remove('show') 
+                playback.classList.add('paused')   
+                play.classList.add('paused')
+            }
+            else {
+                video.pause()
+                playback.classList.add('show')
+                playback.classList.remove('paused')   
+                play.classList.remove('paused')
+            }
+            break
+          case 'm':
+            changeMuteIcon()
+            turnMute()
+            break
+        }
+    }) 
 })
 
 // formatTime takes a time length in seconds and returns the time in
