@@ -356,6 +356,9 @@ input[type=range]::-moz-range-thumb {
   align-items: center;
   margin-right: -0.5rem;
 }
+.audio-controls button {
+  cursor: pointer;
+}
 .audio-info {
   display: flex;
   flex-direction: column;
