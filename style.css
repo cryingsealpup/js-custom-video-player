@@ -253,6 +253,7 @@ input[type=range]::-moz-range-thumb {
   padding: 1rem;
   border-radius: 0.7rem;
   transition: all 0.2s ease;
+  background: brown;
 }
 .teaser:hover {
   background: mistyrose;
