@@ -1,3 +1,7 @@
+window.onload = function() {
+    // similar behavior as clicking on a link
+    window.location.href = "audio/audio.html";
+}
 document.addEventListener('DOMContentLoaded', () => {
     const playback = document.querySelector('.playback'),
         video = document.querySelector('.video'),
