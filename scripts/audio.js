@@ -114,7 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     function playCurrentSong() {
-        const currentSong = document.querySelector('.playlist__item.current').querySelector('audio')
+        const currentSong = document.querySelector('.playlist__item.current').querySelector('audio'),
+              songCover = document.querySelector('.playlist__item.current').querySelector('img')
         updateProgress(currentSong)
         //     listenVolume(currentSong)
         if (currentSong.paused || currentSong.ended) {
@@ -122,10 +123,12 @@ document.addEventListener('DOMContentLoaded', () => {
             play.children[0].classList.add('hidden')
             play.children[1].classList.remove('hidden')
             playback.classList.remove('show')
+            songCover.style.animationPlayState = 'running'
             // playback.classList.remove('show')
             // playback.classList.add('paused')
         } else {
             currentSong.pause()
+            songCover.style.animationPlayState = 'paused'
             playback.classList.add('show')
             play.children[0].classList.remove('hidden')
             play.children[1].classList.add('hidden')
@@ -144,10 +147,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     prev.addEventListener('click', () => {
+        prevClick()
+    })
+
+
+    function prevClick() {
         const current = document.querySelector('.playlist__item.current'),
-            newCurrent = current.previousElementSibling != null ? current.previousSibling : [...current.parentElement.children].slice(-1)[0],
-            currentSlide = document.querySelector('.audio-slide.selected'),
-            newCurrentSlide = currentSlide.previousElementSibling != null ? currentSlide.previousElementSibling : [...currentSlide.parentElement.children].slice(-1)[0]
+        newCurrent = current.previousElementSibling != null ? current.previousSibling : [...current.parentElement.children].slice(-1)[0],
+        currentSlide = document.querySelector('.audio-slide.selected'),
+        newCurrentSlide = currentSlide.previousElementSibling != null ? currentSlide.previousElementSibling : [...currentSlide.parentElement.children].slice(-1)[0]
 
         newCurrentSlide.classList.add('selected')
         currentSlide.classList.remove('selected')
@@ -165,30 +173,35 @@ document.addEventListener('DOMContentLoaded', () => {
         newCurrent.querySelector('audio').currentTime = 0
         getCurrentInfo(newCurrent)
         playCurrentSong()
-    })
+    }
 
     next.addEventListener('click', () => {
-        const current = document.querySelector('.playlist__item.current'),
-            newCurrent = current.nextElementSibling != null ? current.nextElementSibling : [...current.parentElement.children].slice(0)[0],
-            currentSlide = document.querySelector('.audio-slide.selected'),
-            newCurrentSlide = currentSlide.nextElementSibling != null ? currentSlide.nextElementSibling : [...currentSlide.parentElement.children].slice(0)[0]
+        nextClick()
+    })
 
-        newCurrent.classList.add('current')
-        current.classList.remove('current')
+    function nextClick() {
+        const current = document.querySelector('.playlist__item.current'),
+        newCurrent = current.nextElementSibling != null ? current.nextElementSibling : [...current.parentElement.children].slice(0)[0],
+        currentSlide = document.querySelector('.audio-slide.selected'),
+        newCurrentSlide = currentSlide.nextElementSibling != null ? currentSlide.nextElementSibling : [...currentSlide.parentElement.children].slice(0)[0]
+
         newCurrentSlide.classList.add('selected')
         currentSlide.classList.remove('selected')
-        // newCurrent.querySelector('audio').addEventListener('volumechange', () => {
-        //      changeMuteIcon(newCurrent)
-        //  })
+
+        newCurrent.classList.add('current')
+        if (!current.querySelector('audio').paused || !current.querySelector('audio').ended) {
+            current.querySelector('audio').pause()
+        }
+
+
         //  listenVolume(newCurrent.querySelector('audio'))
-        current.querySelector('audio').pause()
+        current.classList.remove('current')
         seek.value = 0
         current.querySelector('audio').currentTime = 0
         newCurrent.querySelector('audio').currentTime = 0
         getCurrentInfo(newCurrent)
         playCurrentSong()
-    })
-
+    }
 
 
 
@@ -231,7 +244,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function turnMute() {
         const song = document.querySelector('.playlist__item.current').querySelector('audio')
         song.muted = !song.muted
-        console.log('tuen mute')
 
         if (song.muted) {
             volumeBar.setAttribute('data-volume', volumeBar.value)
@@ -254,7 +266,6 @@ document.addEventListener('DOMContentLoaded', () => {
             key
         } = e
         const song = document.querySelector('.playlist__item.current').querySelector('audio')
-        // console.log(key)
         switch (key.toLowerCase()) {
             case ' ':
                 playCurrentSong()
@@ -269,7 +280,12 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'm':
                 turnMute()
                 changeMuteIcon(song)
-                
+                break
+            case 'arrowright':
+                nextClick()
+                break
+            case 'arrowleft':
+                prevClick()
                 break
         }
     })
