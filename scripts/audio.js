@@ -157,7 +157,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!current.querySelector('audio').paused || !current.querySelector('audio').ended) {
             current.querySelector('audio').pause()
         }
-        listenVolume(newCurrent.querySelector('audio'))
+
+      
+      //  listenVolume(newCurrent.querySelector('audio'))
         current.classList.remove('current')
         seek.value = 0
         current.querySelector('audio').currentTime = 0
@@ -176,7 +178,10 @@ document.addEventListener('DOMContentLoaded', () => {
         current.classList.remove('current')
         newCurrentSlide.classList.add('selected')
         currentSlide.classList.remove('selected')
-        listenVolume(newCurrent.querySelector('audio'))
+        // newCurrent.querySelector('audio').addEventListener('volumechange', () => {
+        //      changeMuteIcon(newCurrent)
+        //  })
+      //  listenVolume(newCurrent.querySelector('audio'))
         current.querySelector('audio').pause()
         seek.value = 0
         current.querySelector('audio').currentTime = 0
@@ -186,9 +191,9 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
 
-    listenVolume(document.querySelector('.current').querySelector('audio'))
+    
 
-    function listenVolume(song) {
+   // function listenVolume(song) {
         const volumeBtn = document.querySelector('.button__sound-state'),
         volumeLow = volumeBtn.childNodes[1],
         volumeHigh = volumeBtn.childNodes[2],
@@ -196,16 +201,18 @@ document.addEventListener('DOMContentLoaded', () => {
         volumeBar = document.querySelector('.volume-slider')
         // Update volume based on volume bar value
         volumeBar.addEventListener('input', () => {
+            const song = document.querySelector('.playlist__item.current').querySelector('audio')
             if (song.muted) song.muted = false
             song.volume = volumeBar.value
             const percentage = volumeBar.value / volumeBar.getAttribute('max') * 100
             volumeBar.style.background = `linear-gradient(to right, mistyrose 0%, mistyrose ${percentage}%, #fff ${percentage}%, white 100%)`
         })
 
-        function changeMuteIcon() {
+        function changeMuteIcon(song) {
             [...volumeBtn.childNodes].forEach((btn) => {
                 btn.classList.add('hidden')
             })
+            
             volumeBtn.setAttribute('data-title', 'Mute (m)')
 
             if (song.muted || song.volume === 0) {
@@ -217,27 +224,31 @@ document.addEventListener('DOMContentLoaded', () => {
             volumeBar.style.background = `linear-gradient(to right, mistyrose 0%, mistyrose ${percentage}%, #fff ${percentage}%, white 100%)`
         }
 
-        // Change icon based on volume level / state (mute / unmuted)
-        song.addEventListener('volumechange', () => {
-            changeMuteIcon()
-        })
+        // // Change icon based on volume level / state (mute / unmuted)
+        // song.addEventListener('volumechange', () => {
+        //     changeMuteIcon()
+        // })
 
         function turnMute() {
+            const song = document.querySelector('.playlist__item.current').querySelector('audio')
             song.muted = !song.muted
+            console.log('tuen mute')
+            
             if (song.muted) {
                 volumeBar.setAttribute('data-volume', volumeBar.value)
                 volumeBar.value = 0
             } else volumeBar.value = volumeBar.dataset.volume
             const percentage = volumeBar.value / volumeBar.getAttribute('max') * 100
             volumeBar.style.background = `linear-gradient(to right, mistyrose 0%, mistyrose ${percentage}%, #fff ${percentage}%, white 100%)`
+            
         }
 
         // Mute when button clicked
         volumeBtn.addEventListener('click', () => {
-            console.log('clicked')
             turnMute()
+            changeMuteIcon(document.querySelector('.playlist__item.current').querySelector('audio'))
         })
-    }
+  //  }
 
 
 })
